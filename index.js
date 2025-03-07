@@ -1,24 +1,16 @@
-const express = require('express')
-const app = express()
-const port = 4000
+import "dotenv/config"; 
+import express from "express";
+import indexRouter from './rutas/index.js';
+import { connectDB } from "./utils/sql.js";
+import { getUsers } from "./controladores/a.js";
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+const app = express();
+const port = 5000;
+const sql= connectDB();
 
-app.get('/ping', (req, res) => {
-  res.send('Pong')
-})
+console.log(sql.query("SELECT * FROM users"));
 
-app.get('/marcoo', (req, res) => {
-  res.send('poloo')
-})
-
-
-
-/*
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})*/
+app.use(indexRouter);
+app.use(getUsers);
 
 app.listen(port, console.log("http://localhost:"+ port));
