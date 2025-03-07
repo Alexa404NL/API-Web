@@ -10,6 +10,11 @@ app.get('/ping', (req, res) => {
   res.send('Pong')
 })
 
+app.get('/marcoo', (req, res) => {
+  res.send('poloo')
+})
+
+
 
 /*
 app.listen(port, () => {
