@@ -8,9 +8,10 @@ const app = express();
 const port = 5000;
 const sql= connectDB();
 
-console.log(sql.query("SELECT * FROM users"));
+app.use(express.json());
 
 app.use(indexRouter);
 app.use(userRoutes);
+
 
 app.listen(port, console.log("http://localhost:"+ port));
