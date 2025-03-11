@@ -31,11 +31,11 @@ export const postUser = async (req, res) => {
    }; 
 
    export const putUser = async (req, res) => {
-    const {id, username, first_name, last_name, birthdate, password, email} = req.body;
+    const {user_id, username, first_name, last_name, birthdate, password, email} = req.body;
     const sql = connectDB();
     let query ={
-        text: "UPDATE users set username= $2 first_name= $3 last_name= $4 birthdate= $5 password= $6 email= $7 WHERE user_id = $1",
-        values: [id, username, first_name, last_name, birthdate, password, email],
+        text: "UPDATE users set username= $2 , first_name= $3 , last_name= $4 , birthdate= $5 , password= $6 , email= $7 WHERE user_id = $1",
+        values: [user_id, username, first_name, last_name, birthdate, password, email],
     }
     console.log(query);
     const data = await sql.query(query);
@@ -43,11 +43,11 @@ export const postUser = async (req, res) => {
    }; 
 
    export const deleteUser = async (req, res) => {
-    const {id, username, first_name, last_name, birthdate, password, email} = req.body;
+    const {user_id} = req.body;
     const sql = connectDB();
     let query ={
-        text: "Delete user_id = $1",
-        values: [id, username, first_name, last_name, birthdate, password, email],
+        text: "Delete from users where user_id = $1",
+        values: [user_id],
     }
     console.log(query);
     const data = await sql.query(query);
