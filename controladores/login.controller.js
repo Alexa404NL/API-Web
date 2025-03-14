@@ -8,14 +8,15 @@ export const login = async (req, res) => {
     };
     const data = await sql.query(query);
 
-    if (data.rows.length < 1) {
-        return res.json({loggedIn: false, user : {}});
+    if (data.rows.length  === 0) {
+        res.json({ isLogin: false, user: {} });
         return;
     }
 
     if (req.body.password === data.rows[0].password) {
-        return res.json({loggedIn: true, user : data.rows[0]});
-    } else {
-        return res.json({loggedIn: false, user : {}});
-    }
+        res.json({ isLogin: true, user: data.rows[0] });
+        return;
+      } else {
+        res.json({ isLogin: false, user: {} });
+      }
 }

@@ -4,7 +4,7 @@ import { connectDB } from "../utils/sql.js";
 export const getUsers = async (req, res) => {
  const sql = connectDB();
  const data = await sql.query("SELECT * FROM users");
-    return res.json(data);
+    return res.json(data.rows);
 };
 
 export const getUser = async (req, res) => {
@@ -15,7 +15,7 @@ export const getUser = async (req, res) => {
     }
     console.log(query);
     const data = await sql.query(query);
-    return res.json(data);
+    return res.json(data.rows);
    };
 
 export const postUser = async (req, res) => {
@@ -27,7 +27,7 @@ export const postUser = async (req, res) => {
     }
     console.log(query);
     const data = await sql.query(query);
-    return res.json(data);
+    return res.json(data.rows);
    }; 
 
    export const putUser = async (req, res) => {
@@ -39,7 +39,7 @@ export const postUser = async (req, res) => {
     }
     console.log(query);
     const data = await sql.query(query);
-    return res.json(data);
+    return res.json(data.rows);
    }; 
 
    export const deleteUser = async (req, res) => {
@@ -51,5 +51,5 @@ export const postUser = async (req, res) => {
     }
     console.log(query);
     const data = await sql.query(query);
-    return res.json(data);
+    return res.json(data.rows);
    }; 
