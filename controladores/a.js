@@ -11,11 +11,11 @@ export const getUser = async (req, res) => {
     const sql = connectDB();
     let query ={
         text: "SELECT * FROM users WHERE user_id = $1",
-        values: [req.params.id],
+        values: [req.params.id[0]],
     }
     console.log(query);
     const data = await sql.query(query);
-    return res.json(data.rows);
+    return res.json(data.rows[0]);
    };
 
 export const postUser = async (req, res) => {
